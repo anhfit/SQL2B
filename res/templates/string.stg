@@ -1,0 +1,107 @@
+machine(mac) ::= <<
+MACHINE
+	<mac.name>
+<if (mac.refineMachine)>
+REFINES
+	<mac.refineMachine : refineMachine()>
+<endif>
+<if (mac.seeContexts)>
+SEES
+	<mac.seeContexts : seeContext(); separator = "\n">
+<endif>
+<if (mac.variables)>
+VARIABLES
+	<mac.variables : variable(); separator = "\n">
+<endif>
+<if (mac.invariants)>
+INVARIANTS
+	<mac.invariants : invariant(); separator = "\n">
+<endif>
+<if (mac.events)>
+EVENTS
+	<mac.events : event(); separator = "\n">
+<endif>
+<if (mac.variant)>
+VARIANT
+	<mac.variant : variant()>
+<endif>
+END
+>>
+
+refineMachine(mac) ::= "<mac.name>"
+
+seeContext(ctx) ::= "<ctx.name>"
+
+variable(var) ::= "<var.identifier>"
+
+invariant(inv) ::= "<inv.label>: <inv.predicate><if (inv.theorem)> (theorem)<endif>"
+
+variant(vrt) ::= "<vrt.expression>"
+
+event(evt) ::= <<
+EVENT
+	<evt.name>
+STATUS
+	<evt.status>
+<if (evt.refineEvents)>
+REFINES
+	<evt.refineEvents : refineEvent(); separator = "\n">
+<endif>
+<if (evt.parameters)>
+ANY
+	<evt.parameters : parameter(); separator = "\n">
+<endif>
+<if (evt.guards)>
+WHERE
+	<evt.guards : guard(); separator = "\n">
+<endif>
+<if (evt.witnesses)>
+WITH
+	<evt.witnesses : witness(); separator = "\n">
+<endif>
+<if (evt.actions)>
+THEN
+	<evt.actions : action(); separator = "\n">
+<endif>
+END
+>>
+
+refineEvent(evt) ::= "<evt.name>"
+
+parameter(prm) ::= "<prm.identifier>"
+
+guard(grd) ::= "<grd.label>: <grd.predicate><if (grd.theorem)> (theorem)<endif>"
+
+witness(wit) ::= "<wit.label>: <wit.predicate>"
+
+action(act) ::= "<act.label>: <act.assignment>"
+
+context(cxt) ::= <<
+CONTEXT
+	<cxt.name>
+<if (cxt.extendContexts)>
+EXTENDS
+	<cxt.extendContexts : extendContext(); separator = "\n">
+<endif>
+<if (cxt.carrierSets)>
+SETS
+	<cxt.carrierSets : carrierSet(); separator = "\n">
+<endif>
+<if (cxt.constants)>
+CONSTANTS
+	<cxt.constants : constant(); separator = "\n">
+<endif>
+<if (cxt.axioms)>
+AXIOMS
+	<cxt.axioms : axiom(); separator = "\n">
+<endif>
+END
+>>
+
+extendContext(cxt) ::= "<cxt.name>"
+
+carrierSet(set) ::= "<set.identifier>"
+
+constant(cst) ::= "<cst.identifier>"
+
+axiom(axm) ::= "<axm.label>: <axm.predicate><if (axm.theorem)> (theorem)<endif>"

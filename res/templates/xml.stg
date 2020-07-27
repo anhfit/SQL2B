@@ -1,0 +1,137 @@
+machine(mac) ::= <<
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+$if (mac.refineMachine)$
+	$mac.refineMachine : refineMachine()$
+$endif$
+$if (mac.seeContexts)$
+	$mac.seeContexts : seeContext(); separator = "\n"$
+$endif$
+$if (mac.variables)$
+	$mac.variables : variable(); separator = "\n"$
+$endif$
+$if (mac.invariants)$
+	$mac.invariants : invariant(); separator = "\n"$
+$endif$
+$if (mac.events)$
+	$mac.events : event(); separator = "\n"$
+$endif$
+$if (mac.variant)$
+	$mac.variant : variant()$
+$endif$
+</org.eventb.core.machineFile>
+>>
+
+refineMachine(mac) ::= <<
+<org.eventb.core.refinesMachine name="internal_refinesMachine_$mac.name$" org.eventb.core.target="$mac.name$"/>
+>>
+
+seeContext(ctx) ::= <<
+<org.eventb.core.seesContext name="internal_seesContext_$ctx.name$" org.eventb.core.target="$ctx.name$"/>
+>>
+
+variable(var) ::= <<
+<org.eventb.core.variable name="internal_var_$var.identifier$" org.eventb.core.identifier="$var.identifier$"/>
+>>
+
+invariant(inv) ::= <<
+<org.eventb.core.invariant name="internal_inv_$inv.label$" org.eventb.core.label="$inv.label$" org.eventb.core.predicate="$inv.predicate$"$if (inv.theorem)$ org.eventb.core.theorem="true"$endif$/>
+>>
+
+variant(vrt) ::= <<
+<org.eventb.core.variant name="internal_vrt" org.eventb.core.expression="$vrt.expression$"/>
+>>
+
+event(evt) ::= <<
+<org.eventb.core.event name="internal_evt_$evt.name$" org.eventb.core.convergence="$evt.status$" org.eventb.core.extended="$evt.extended$" org.eventb.core.label="$evt.name$">
+$if (evt.refineEvents)$
+	$evt.refineEvents : refineEvent(); separator = "\n"$
+$endif$
+$if (evt.parameters)$
+	$evt.parameters : parameter(); separator = "\n"$
+$endif$
+$if (evt.guards)$
+	$evt.guards : guard(); separator = "\n"$
+$endif$
+$if (evt.witnesses)$
+	$evt.witnesses : witness(); separator = "\n"$
+$endif$
+$if (evt.actions)$
+	$evt.actions : action(); separator = "\n"$
+$endif$
+</org.eventb.core.event>
+>>
+
+refineEvent(evt) ::= <<
+<org.eventb.core.refinesEvent name="internal_refinesEvent_$evt.name$" org.eventb.core.target="$evt.name$"/>
+>>
+
+parameter(prm) ::= <<
+<org.eventb.core.parameter name="internal_prm_$prm.identifier$" org.eventb.core.identifier="$prm.identifier$"/>
+>>
+
+guard(grd) ::= <<
+<org.eventb.core.guard name="internal_grd_$grd.label$" org.eventb.core.label="$grd.label$" org.eventb.core.predicate="$grd.predicate$"/>
+>>
+
+witness(wit) ::= <<
+<org.eventb.core.witness name="internal_wit_$wit.label$" org.eventb.core.label="$wit.label$" org.eventb.core.predicate="$wit.predicate$"/>
+>>
+
+action(act) ::= <<
+<org.eventb.core.action name="internal_act_$act.label$" org.eventb.core.label="$act.label$" org.eventb.core.assignment="$act.assignment$"/>
+>>
+
+context(cxt) ::= <<
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd" version="3">
+$if (cxt.extendContexts)$
+	$cxt.extendContexts : extendContext(); separator = "\n"$
+$endif$
+$if (cxt.carrierSets)$
+	$cxt.carrierSets : carrierSet(); separator = "\n"$
+$endif$
+$if (cxt.constants)$
+	$cxt.constants : constant(); separator = "\n"$
+$endif$
+$if (cxt.axioms)$
+	$cxt.axioms : axiom(); separator = "\n"$
+$endif$
+</org.eventb.core.contextFile>
+>>
+
+extendContext(cxt) ::= <<
+<org.eventb.core.extendsContext name="internal_extendsContext_$cxt.name$" org.eventb.core.target="$cxt.name$"/>
+>>
+
+carrierSet(set) ::= <<
+<org.eventb.core.carrierSet name="internal_set_$set.identifier$" org.eventb.core.identifier="$set.identifier$"/>
+>>
+
+constant(cst) ::= <<
+<org.eventb.core.constant name="internal_cst_$cst.identifier$" org.eventb.core.identifier="$cst.identifier$"/>
+>>
+
+axiom(axm) ::= <<
+<org.eventb.core.axiom name="internal_axm_$axm.label$" org.eventb.core.label="$axm.label$" org.eventb.core.predicate="$axm.predicate$"$if (axm.theorem)$ org.eventb.core.theorem="true"$endif$/>
+>>
+
+project(prj) ::=<<
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>$prj.name$</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.rodinp.core.rodinbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.rodinp.core.rodinnature</nature>
+	</natures>
+</projectDescription>
+>>

@@ -1,0 +1,49 @@
+updateTrigger(table, id, change, MathNotation) ::=<<
+<table> <MathNotation.BECOMES_EQUAL> {<id> <MathNotation.MAPLET> (<change>)} <MathNotation.RELATION_OVERRIDING> <table>
+>>
+
+insertTrigger(table, id, change, MathNotation) ::=<<
+>>
+
+deleteTrigger(table, id, change, MathNotation) ::=<<
+>>
+
+becomesEqual(lhs, rhs, MathNotation) ::=<<
+<lhs> <MathNotation.BECOMES_EQUAL> <rhs>
+>>
+
+becomesElementOf(lhs, rhs, MathNotation) ::=<<
+<lhs> <MathNotation.BECOMES_ELEMENT_OF> <rhs>
+>>
+
+becomesSuchThat(lhs, rhs, MathNotation) ::=<<
+<lhs> <MathNotation.BECOMES_SUCH_THAT> <rhs>
+>>
+
+partitionDef(set, elements) ::=<<
+partition(<set>, <elements : {e | {<e>\}}; separator = ", ">)
+>>
+
+elementOfPowerSet(element, set, MathNotation) ::=<<
+<element> <MathNotation.ELEMENT_OF> <MathNotation.POWERSET>(<set>)
+>>
+
+elementOfSet(element, set, MathNotation) ::=<<
+<element> <MathNotation.ELEMENT_OF> <set>
+>>
+
+elementOfDom(element, set, MathNotation) ::=<<
+<element> <MathNotation.ELEMENT_OF> don(<set>)
+>>
+
+elementOfRan(element, set, MathNotation) ::=<<
+<element> <MathNotation.ELEMENT_OF> ran(<set>)
+>>
+
+tableDef(table_name, columns_def, MathNotation) ::=<<
+<table_name> <MathNotation.SUBSET_OF_OR_EQUAL_TO> <columns_def; separator = { <MathNotation.CARTESIAN_PRODUCT> }>
+>>
+
+pkInvariant(pkConstraint, recognition, MathNotation) ::=<<
+<pkConstraint> <MathNotation.ELEMENT_OF> dom(<recognition>) <MathNotation.BIJECTION> ran(<recognition>)
+>>

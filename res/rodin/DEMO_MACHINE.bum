@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+	<org.eventb.core.seesContext name="internal_seesContext_DEMO_CONTEXT" org.eventb.core.target="DEMO_CONTEXT"/>
+	<org.eventb.core.variable name="internal_var_ttype" org.eventb.core.identifier="ttype"/>
+	<org.eventb.core.variable name="internal_var_table" org.eventb.core.identifier="table"/>
+	<org.eventb.core.variable name="internal_var_employees_rec" org.eventb.core.identifier="employees_rec"/>
+	<org.eventb.core.variable name="internal_var_pk_employees" org.eventb.core.identifier="pk_employees"/>
+	<org.eventb.core.variable name="internal_var_bonus_rec" org.eventb.core.identifier="bonus_rec"/>
+	<org.eventb.core.variable name="internal_var_pk_bonus" org.eventb.core.identifier="pk_bonus"/>
+	<org.eventb.core.invariant name="internal_inv_ttype" org.eventb.core.label="ttype" org.eventb.core.predicate="ttype ∈ TRIGGER_TYPES"/>
+	<org.eventb.core.invariant name="internal_inv_table" org.eventb.core.label="table" org.eventb.core.predicate="table ∈ TABLE_NAMES"/>
+	<org.eventb.core.invariant name="internal_inv_employees_rec" org.eventb.core.label="employees_rec" org.eventb.core.predicate="employees_rec ∈ ℙ(TABLE_EMPLOYEES)"/>
+	<org.eventb.core.invariant name="internal_inv_pk_employees" org.eventb.core.label="pk_employees" org.eventb.core.predicate="pk_employees ∈ dom(employees_rec) ⤖ ran(employees_rec)"/>
+	<org.eventb.core.invariant name="internal_inv_bonus_rec" org.eventb.core.label="bonus_rec" org.eventb.core.predicate="bonus_rec ∈ ℙ(TABLE_BONUS)"/>
+	<org.eventb.core.invariant name="internal_inv_pk_bonus" org.eventb.core.label="pk_bonus" org.eventb.core.predicate="pk_bonus ∈ dom(bonus_rec) ⤖ ran(bonus_rec)"/>
+	<org.eventb.core.event name="internal_evt_trigger_1" org.eventb.core.convergence="ORDINARY" org.eventb.core.extended="false" org.eventb.core.label="trigger_1">
+		<org.eventb.core.parameter name="internal_prm_employees_id" org.eventb.core.identifier="employees_id"/>
+		<org.eventb.core.guard name="internal_grd_ttype" org.eventb.core.label="ttype" org.eventb.core.predicate="ttype = update"/>
+		<org.eventb.core.guard name="internal_grd_table" org.eventb.core.label="table" org.eventb.core.predicate="table = employees"/>
+		<org.eventb.core.guard name="internal_grd_employees_id" org.eventb.core.label="employees_id" org.eventb.core.predicate="employees_id ∈ don(employees_rec)"/>
+		<org.eventb.core.action name="internal_act_ttype" org.eventb.core.label="ttype" org.eventb.core.assignment="ttype ≔ update"/>
+		<org.eventb.core.action name="internal_act_table" org.eventb.core.label="table" org.eventb.core.assignment="table ≔ bonus"/>
+		<org.eventb.core.action name="internal_act_change_data" org.eventb.core.label="change_data" org.eventb.core.assignment="bonus ≔ {employees_id ↦ (pk_bonus(employees_id) + null)}  bonus"/>
+	</org.eventb.core.event>
+	<org.eventb.core.event name="internal_evt_trigger_2" org.eventb.core.convergence="ORDINARY" org.eventb.core.extended="false" org.eventb.core.label="trigger_2">
+		<org.eventb.core.parameter name="internal_prm_bonus_id" org.eventb.core.identifier="bonus_id"/>
+		<org.eventb.core.guard name="internal_grd_ttype" org.eventb.core.label="ttype" org.eventb.core.predicate="ttype = update"/>
+		<org.eventb.core.guard name="internal_grd_table" org.eventb.core.label="table" org.eventb.core.predicate="table = bonus"/>
+		<org.eventb.core.guard name="internal_grd_bonus_id" org.eventb.core.label="bonus_id" org.eventb.core.predicate="bonus_id ∈ don(bonus_rec)"/>
+		<org.eventb.core.action name="internal_act_ttype" org.eventb.core.label="ttype" org.eventb.core.assignment="ttype ≔ update"/>
+		<org.eventb.core.action name="internal_act_table" org.eventb.core.label="table" org.eventb.core.assignment="table ≔ employees"/>
+		<org.eventb.core.action name="internal_act_change_data" org.eventb.core.label="change_data" org.eventb.core.assignment="employees ≔ {bonus_id ↦ (pk_employees(bonus_id) + null)}  employees"/>
+	</org.eventb.core.event>
+</org.eventb.core.machineFile>

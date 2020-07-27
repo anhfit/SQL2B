@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="1">
+<org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="1">
+<org.eventb.core.poIdentifier name="TABLE_NAMES" org.eventb.core.type="ℙ(TABLE_NAMES)"/>
+<org.eventb.core.poIdentifier name="TRIGGER_TYPES" org.eventb.core.type="ℙ(TRIGGER_TYPES)"/>
+<org.eventb.core.poIdentifier name="TABLE_BONUS" org.eventb.core.type="ℙ(ℤ×ℤ)"/>
+<org.eventb.core.poIdentifier name="TABLE_EMPLOYEES" org.eventb.core.type="ℙ(ℤ×ℤ)"/>
+<org.eventb.core.poIdentifier name="bonus" org.eventb.core.type="TABLE_NAMES"/>
+<org.eventb.core.poIdentifier name="delete" org.eventb.core.type="TRIGGER_TYPES"/>
+<org.eventb.core.poIdentifier name="employees" org.eventb.core.type="TABLE_NAMES"/>
+<org.eventb.core.poIdentifier name="insert" org.eventb.core.type="TRIGGER_TYPES"/>
+<org.eventb.core.poIdentifier name="update" org.eventb.core.type="TRIGGER_TYPES"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/Demo/DEMO_CONTEXT.bpo|org.eventb.core.poFile#DEMO_CONTEXT|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="1">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="TABLE_EMPLOYEES⊆ℕ × ℕ" org.eventb.core.source="/Demo/DEMO_CONTEXT.buc|org.eventb.core.contextFile#DEMO_CONTEXT|org.eventb.core.axiom#internal_axm_employees"/>
+<org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="TABLE_BONUS⊆ℕ × ℕ" org.eventb.core.source="/Demo/DEMO_CONTEXT.buc|org.eventb.core.contextFile#DEMO_CONTEXT|org.eventb.core.axiom#internal_axm_bonus"/>
+<org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="partition(TRIGGER_TYPES,{insert},{update},{delete})" org.eventb.core.source="/Demo/DEMO_CONTEXT.buc|org.eventb.core.contextFile#DEMO_CONTEXT|org.eventb.core.axiom#internal_axm_trigger_types"/>
+<org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="partition(TABLE_NAMES,{employees},{bonus})" org.eventb.core.source="/Demo/DEMO_CONTEXT.buc|org.eventb.core.contextFile#DEMO_CONTEXT|org.eventb.core.axiom#internal_axm_table_names"/>
+</org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>
